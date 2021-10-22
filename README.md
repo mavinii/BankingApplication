@@ -1,11 +1,11 @@
 # Banking Application
-OOP - BSC20921 - Semester 1 - Dorset College
-22931 - Marcos Oliveira
+OOP - BSC20921 - Semester 1 - Dorset College.
+22931 - Marcos Oliveira.
 
 # Logging In
-•	An opening menu should ask if you are a Bank Employee or a Customer.
-•	To successfully login as a bank employee you must type in the pin 'A1234'
-•	To successfully login as a customer, you must enter your first name, last name, account number and pin. 
+1.	An opening menu should ask if you are a Bank Employee or a Customer.
+2.	To successfully login as a bank employee you must type in the pin 'A1234'
+3.	To successfully login as a customer, you must enter your first name, last name, account number and pin. 
 
 # Bank Employee View
 1.	As a bank employee you can create and delete customers. 
