@@ -2,8 +2,6 @@
 OOP - BSC20921 - Semester 1 - Dorset College
 22931 - Marcos Oliveira
 
-# You are required to create a console-based banking application in an OOP language.
-
 # Logging In
 •	An opening menu should ask if you are a Bank Employee or a Customer.
 •	To successfully login as a bank employee you must type in the pin 'A1234'
