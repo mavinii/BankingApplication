@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace BankingApplication.Models
 {
-    // This class Driver will pushing all our code
     public class Driver
     {
+        // This class is in charge of main application
 
         //Constructor
         public Driver()
@@ -18,7 +18,7 @@ namespace BankingApplication.Models
         }
 
         // Function to know if it is Bank Employee or Customer
-        public void login()
+        public void Login()
         {
 
             // Checking password

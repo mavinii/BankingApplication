@@ -12,5 +12,43 @@ namespace BankingApplication.Models
         //2.	A customer can retrieve the transaction history for their specified account.
         //3.	They can add and subtract money to either their savings account or current account.
         //4.	They cannot have negative balances
+
+        private string _name;
+
+        //constructor
+        public Customer(string name)
+        {
+            _name = name;
+        }
+
+        //Retrieve Transaction Method
+        public string retrieveTransaction()
+        {
+            return "Function retrieve the Transaction";
+        }
+
+        //History Account Method
+        public string historyAccount()
+        {
+            return "Function history for their Specified Account";
+        }
+
+        //Add Money Method
+        public string addMoney()
+        {
+            return "Function history for their Specified Account";
+        }
+
+        //Subtract Money method
+        public string subtractMoney()
+        {
+            return "Function subtractMoney Specified Account";
+        }
+
+        //Negative balances
+        public string negativeBalances()
+        {
+            return "Cannot have negative balances";
+        }
     }
 }
