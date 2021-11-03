@@ -47,6 +47,10 @@ namespace BankingApplication.Models
                 } else 
                 {
                     Console.WriteLine("Welcome, Employee!");
+
+                    //It is calling the Customer class
+                    BankEmployee bankemployee = new BankEmployee();
+                    bankemployee.DisplayMenu();
                 }
             } else if (a == 2)
             {
@@ -65,6 +69,10 @@ namespace BankingApplication.Models
                 else
                 {
                     Console.WriteLine($"Welcome {firstName} {secondName},");
+
+                    //It is calling the Customer class
+                    Customer customer = new Customer();
+                    customer.DisplayMenu();
                 }
             }
         }

@@ -6,49 +6,71 @@ using System.Threading.Tasks;
 
 namespace BankingApplication.Models
 {
-    class Customer
+    public class Customer
     {
         //1.	To login, a customer must enter their name, account code AND a pin number for their account
         //2.	A customer can retrieve the transaction history for their specified account.
         //3.	They can add and subtract money to either their savings account or current account.
         //4.	They cannot have negative balances
 
-        private string _name;
 
         //constructor
-        public Customer(string name)
+        public Customer()
         {
-            _name = name;
+        }
+
+        public void DisplayMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("-----------------------------");
+            Console.WriteLine("| Customer,                  |");
+            Console.WriteLine("|                            |");
+            Console.WriteLine("| 1. Retrieve Transaction    |");
+            Console.WriteLine("| 2. Cash Deposit            |");
+            Console.WriteLine("| 3. Withdrawal              |");
+            Console.WriteLine("|                            |");
+            Console.WriteLine("-----------------------------");
+
+            Console.Write("Answer: ");
+            int a = Convert.ToInt32(Console.ReadLine());
+
+            if (a == 1)
+            {
+                RetrieveTransaction();
+            } else if (a == 2)
+            {
+                AddMoney();
+            } else if (a == 3)
+            {
+                SubtractMoney();
+            } else
+            {
+                Console.WriteLine("Wrong option, try again!");
+            }
         }
 
         //Retrieve Transaction Method
-        public string retrieveTransaction()
+        public void RetrieveTransaction()
         {
-            return "Function retrieve the Transaction";
-        }
-
-        //History Account Method
-        public string historyAccount()
-        {
-            return "Function history for their Specified Account";
+            Console.WriteLine("Transaction History Method");
         }
 
         //Add Money Method
-        public string addMoney()
+        public void AddMoney()
         {
-            return "Function history for their Specified Account";
+            Console.WriteLine("Add money Method");
         }
 
-        //Subtract Money method
-        public string subtractMoney()
+        //Subtract Money Method
+        public void SubtractMoney()
         {
-            return "Function subtractMoney Specified Account";
+            Console.WriteLine("Subtract Money Method");
         }
 
-        //Negative balances
-        public string negativeBalances()
+        //Negative balances Method
+        public void NegativeBalances()
         {
-            return "Cannot have negative balances";
+            Console.WriteLine("Cannot have negative balances Method");
         }
     }
 }

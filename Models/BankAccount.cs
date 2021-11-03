@@ -8,15 +8,29 @@ namespace BankingApplication.Models
 {
     public class BankAccount
     {
-        private double money;
-        private string name;
 
-        //constructor
-        //public BankAccount(double _money, string _name)
-        //{
-        //    money = _money;
-        //    name = _name;
-        //    Console.WriteLine("This is the banck account class");
-        //}
+        //list of customer
+        public List<string> listOfCustomer = new List<string>();
+
+        public string customerFName { get; set; }
+        public string customerLName { get; set; }
+        public string customerEmail { get; set; }
+
+
+        public BankAccount(string _customerFName, string _customerLName, string _customerEmail)
+        {
+            customerFName = _customerFName;
+            customerLName = _customerLName;
+            customerEmail = _customerEmail;
+        }
+
+        public BankAccount()
+        {
+        }
+
+        internal void AddRange(List<string> list)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
