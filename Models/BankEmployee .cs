@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace BankingApplication.Models
 {
-    class BankEmployee
-    {
-        
+    public class BankEmployee
+    {      
 
         //public object listOfCustomer { get; private set; }
 
@@ -36,6 +35,7 @@ namespace BankingApplication.Models
             Console.WriteLine("| 2. Delete Customer         |");
             Console.WriteLine("| 3. Create Transactions     |");
             Console.WriteLine("| 4. List of Customer        |");
+            Console.WriteLine("| 5. Log out                 |");
             Console.WriteLine("|                            |");
             Console.WriteLine("-----------------------------");
 
@@ -62,11 +62,11 @@ namespace BankingApplication.Models
         }
 
         //5.To create a customer account you need first name, last name and email.
-        public void CreateCustomers()
+        public static void CreateCustomers()
         {
             BankAccount bankAccount = new BankAccount();
 
-            //asking customer details
+            //Asking customer details
             Console.Write("Enter your First Name: ");
             string customerFName = Console.ReadLine();
             Console.Write("Enter your Last Name: ");
@@ -74,19 +74,12 @@ namespace BankingApplication.Models
             Console.Write("Email address: ");
             string customerEmail = Console.ReadLine();
 
-            ///bankAccount.add(new BankAccount { customerFName, customerLName, customerEmail });
-            //string[] newCustomer = { customerFName, customerLName, customerEmail };
-            //listOfCustomer.Add(newCustomer);
+            //Create an customer
+            string newUser = "newUser.txt";
+            string[] userDetails = { $"Name: {customerFName}", $"Surname: {customerLName}", $"Email: {customerEmail}" };
 
-            bankAccount.AddRange(new List<String>() { customerFName, customerLName, customerEmail });
-
-            //BankAccount c1 = new BankAccount(customerFName, customerLName, customerEmail);
-            //bankAccount.listOfCustomer.Add(c1);
-            //bankAccount.listOfCustomer.Add( customerFName,  customerLName,  customerEmail);
-
-            //Console.WriteLine( PRINT THE LIST HERE );
-
-            //Create an user file to save all information here.
+            User.WriteFile(newUser, userDetails);
+            User.ReadFile(newUser);
 
         }
 
