@@ -1,35 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+//22931 - Marcos Oliveira
 namespace BankingApplication.Models
 {
     public class BankEmployee
-    {      
-
-        //public object listOfCustomer { get; private set; }
-
-        //1.	As a bank employee you can create and delete customers.
-        //2.	Each new customer gets a savings account and a current account.
-        //3.	You can only delete customers who have zero balances.
-        //4.	You can create transactions(lodge, deposit) for each customer.You should be able to add and withdraw for a specified account.
-        //5.	To create a customer account you need first name, last name and email.
-        //6.	You should be able to show a complete list of customers including their balances in savings and current account.
-        //7.	There should be a menu item allowing you to list customers, their account numbers.
-
+    {
+ 
         //Constructor
         public BankEmployee()
         {
 
         }
 
-        public void DisplayMenu()
+        public static void DisplayMenu(string welcome)
         {
             Console.Clear();
             Console.WriteLine("-----------------------------");
-            Console.WriteLine("| Employee,                  |");
+            Console.WriteLine("| Dear Employee,             |");
             Console.WriteLine("|                            |");
             Console.WriteLine("| 1. Create Customer         |");
             Console.WriteLine("| 2. Delete Customer         |");
@@ -38,34 +30,39 @@ namespace BankingApplication.Models
             Console.WriteLine("| 5. Log out                 |");
             Console.WriteLine("|                            |");
             Console.WriteLine("-----------------------------");
-
             Console.Write("Answer: ");
-            int a = Convert.ToInt32(Console.ReadLine());
+            int answer = Convert.ToInt32(Console.ReadLine());
 
-            if (a == 1)
+            // Cant have the wrong answer
+            while (answer !=1 && answer != 2 && answer != 3 && answer != 4 && answer != 5)
+            {
+                Console.WriteLine($"{answer} does not exist! Try again (1-5)");
+                Console.Write("Answer: ");
+                answer = Convert.ToInt32(Console.ReadLine());
+
+            }
+
+            if (answer == 1)
             {
                 CreateCustomers();
-            } else if (a == 2)
+            } else if (answer == 2)
             {
                 DeleteCustomers();
-            } else if (a == 3)
+            } else if (answer == 3)
             {
                 CreateTransactions();
-            } else if (a == 4)
+            }else if (answer == 4)
             {
                 ListOfCustomers();
-            }
-            else
+            } else
             {
-                Console.WriteLine("Wrong option, try again!");
+                LogOut();
             }
         }
 
-        //5.To create a customer account you need first name, last name and email.
+        // This Method creates a new user
         public static void CreateCustomers()
         {
-            BankAccount bankAccount = new BankAccount();
-
             //Asking customer details
             Console.Write("Enter your First Name: ");
             string customerFName = Console.ReadLine();
@@ -74,33 +71,71 @@ namespace BankingApplication.Models
             Console.Write("Email address: ");
             string customerEmail = Console.ReadLine();
 
-            //Create an customer
-            string newUser = "newUser.txt";
-            string[] userDetails = { $"Name: {customerFName}", $"Surname: {customerLName}", $"Email: {customerEmail}" };
-
+            //User.ReadFile(customerFName, customerLName, customerEmail);
+            string newUser = "customers.txt";
+            string[] userDetails = { "Name: " + customerFName + ", Last Name: " + customerLName + ", Email: " + customerEmail };
             User.WriteFile(newUser, userDetails);
-            User.ReadFile(newUser);
 
+            // Animation reloading
+            Console.WriteLine("----------------------");
+            TextAnimation.AnimationTyping("Wait... \n");
+            Console.WriteLine("User Created! \n");
+
+            // New menu with condicion
+            Console.WriteLine("1. Back to Menu");
+            Console.WriteLine("2. Create a new user");
+            Console.WriteLine("3. Log out");
+            Console.Write("Answer: ");
+            int answer = Convert.ToInt32(Console.ReadLine());
+
+            while (answer != 1 && answer != 2 && answer != 3)
+            {
+                Console.WriteLine($"{answer} does not exist! Try again (1-3)");
+                Console.Write("Answer: ");
+                answer = Convert.ToInt32(Console.ReadLine());
+            }
+
+            if (answer == 1)
+            {
+                Console.Clear();
+                BankEmployee.DisplayMenu("Menu");
+            }
+            else if (answer == 2)
+            {
+                Console.Clear();
+                CreateCustomers();
+            }
+            else
+            {
+                Console.Clear();
+                LogOut();
+            }
         }
 
-        //You can only delete customers who have zero balances.
-        public void DeleteCustomers()
+        // You can only delete customers who have zero balances.
+        public static void DeleteCustomers()
         {
-            //Create an user file to save all information here.
+            // Create an user file to save all information here.
             Console.WriteLine("Customers 0 balances Method");
         }
 
-        //Create transactions(lodge, deposit) for each customer
-        //You should be able to add and withdraw for a specified account
-        public void CreateTransactions()
+        // Create transactions(lodge, deposit) for each customer
+        // You should be able to add and withdraw for a specified account
+        public static void CreateTransactions()
         {
             Console.WriteLine("This is the Create transactions Method");
         }
 
-        //list of customers including their balances in savings and current account
-        public void ListOfCustomers()
+        // List of customers including their balances in savings and current account
+        public static void ListOfCustomers()
         {
-            Console.WriteLine("This is the list of customers Method");
+            Console.WriteLine("List of Customers");
+        }
+        
+        // Log out of the system
+        public static void LogOut()
+        {
+            Console.WriteLine("You have been logged out");
         }
     }
 }

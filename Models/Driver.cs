@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+//22931 - Marcos Oliveira
 namespace BankingApplication.Models
 {
     public class Driver
@@ -18,7 +19,7 @@ namespace BankingApplication.Models
         }
 
         // Function to know if it is Bank Employee or Customer
-        public void Login()
+        public void Login(string welcome)
         {
 
             // Checking password
@@ -26,33 +27,40 @@ namespace BankingApplication.Models
             int pin = 12345;
             string firstName;
             string secondName;
-
+            
             Console.WriteLine("1. Bank Employee");
             Console.WriteLine("2. Customer");
             Console.Write("Answer: ");
-            int a = Convert.ToInt32(Console.ReadLine());
+            int answer = Convert.ToInt32(Console.ReadLine());
 
-            if ((a != 1) && (a != 2)) 
+            // Cant have the wrong answer
+            while (answer != 1 && answer != 2)
             {
-                Console.WriteLine("Please, try again!");
-                
-            } else if (a == 1) 
+                Console.WriteLine($"{answer} does not exist! Try again (1-2) \n");
+                Console.WriteLine("1. Bank Employee");
+                Console.WriteLine("2. Customer");
+                Console.Write("Answer: ");
+                answer = Convert.ToInt32(Console.ReadLine());
+            }
+
+            if (answer == 1) 
             {
                 Console.Write("Hi Employee, please type your password: ");
                 string aEmployee = Console.ReadLine();
 
-                if (aEmployee != password) 
+                // Cant have the wrong answer
+                while (aEmployee != password) 
                 {
-                    Console.WriteLine("Please, try again!");
-                } else 
-                {
-                    Console.WriteLine("Welcome, Employee!");
-
-                    //It is calling the Customer class
-                    BankEmployee bankemployee = new BankEmployee();
-                    bankemployee.DisplayMenu();
+                    Console.WriteLine("Please, try again! \n");
+                    Console.Write("Password: ");
+                    aEmployee = Console.ReadLine();
                 }
-            } else if (a == 2)
+
+                //It is calling the Customer class
+                Console.WriteLine("Welcome, Employee!");
+                BankEmployee.DisplayMenu("");
+                
+            } else if (answer == 2)
             {
                 Console.WriteLine("Hi Customer,");
                 Console.Write("Firt Name: ");
@@ -62,18 +70,17 @@ namespace BankingApplication.Models
                 Console.Write("Please, type your PIN: ");
                 int customerPin = Convert.ToInt32(Console.ReadLine());
 
-                if (customerPin != pin)
+                // Cant have the wrong answer
+                while (customerPin != pin)
                 {
                     Console.WriteLine("Please, try again!");
+                    Console.Write("Password: ");
+                    customerPin = Convert.ToInt32(Console.ReadLine());
                 }
-                else
-                {
-                    Console.WriteLine($"Welcome {firstName} {secondName},");
 
-                    //It is calling the Customer class
-                    Customer customer = new Customer();
-                    customer.DisplayMenu();
-                }
+                //It is calling the Customer class
+                Console.WriteLine($"Welcome, {firstName} {secondName},");
+                Customer.DisplayMenu("");                
             }
         }
     }
