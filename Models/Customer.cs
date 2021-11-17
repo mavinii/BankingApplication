@@ -3,18 +3,36 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static BankingApplication.Models.Account;
 
 //22931 - Marcos Oliveira
 namespace BankingApplication.Models
 {
     public class Customer
     {
+        public string firstName;
+        public string lastName;
+        public int pinNumber;
+        public int accountCode;
+        public int enterNumber;
+        public string email;
+        public static Account account1 = new Account(0);
+   
+
+        public Customer(string firstName, string lastName, string email)
+        {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.email = email;
+        }
+
 
         //constructor
         public Customer()
         {
 
         }
+
 
         public static void DisplayMenu(string welcome)
         {
@@ -34,10 +52,9 @@ namespace BankingApplication.Models
             // Cant have the wrong answer
             while (answer != 1 && answer != 2 && answer != 3 && answer != 4)
             {
-                Console.WriteLine($"{answer} does not exist! Try again (1-5)");
+                Console.WriteLine($"{answer} does not exist! Try again (1-4)");
                 Console.Write("Answer: ");
                 answer = Convert.ToInt32(Console.ReadLine());
-
             }
 
             if (answer == 1)
@@ -58,29 +75,69 @@ namespace BankingApplication.Models
         //Retrieve Transaction Method
         public static void RetrieveTransaction()
         {
-            Console.WriteLine("Transaction History Method");
+            Console.WriteLine("\nThis Retrieve Transaction class is not working yet!\n");
+
+            // New menu with condition
+            Console.WriteLine("1. Back to Menu");
+            Console.WriteLine("2. Subtract Money");
+            Console.WriteLine("3. Log out");
+            Console.Write("Answer: ");
+            int answer = Convert.ToInt32(Console.ReadLine());
+
+            while (answer != 1 && answer != 2 && answer != 3)
+            {
+                Console.WriteLine($"{answer} does not exist! Try again (1-3)");
+                Console.Write("Answer: ");
+                answer = Convert.ToInt32(Console.ReadLine());
+            }
+
+            if (answer == 1)
+            {
+                Console.Clear();
+                Customer.DisplayMenu("Menu");
+            }
+            else if (answer == 2)
+            {
+                Console.Clear();
+
+                //Animation reloading
+                Console.WriteLine("\nThis Retrieve Transaction class is not working yet!\n");
+                Console.WriteLine("----------------------");
+                TextAnimation.AnimationTyping("Returning...");
+                Customer.DisplayMenu("Menu");
+
+                //RetrieveTransaction();
+            }
+            else
+            {
+                Console.Clear();
+                LogOut();
+            }
         }
 
         //Add Money Method
         public static void AddMoney()
         {
 
-            Account account = new Account();
-            double balance = account.CheckingBalance();
+            //what is happening? I can add money but it is returning the actual value
+            // and not adding they together
+
+
             
-            Console.WriteLine($"Your current balance is:  {balance}  \n");
-            Console.Write("How much do you want to add to your account? \n");
-            Console.Write("$ ");
+            // Asking how much money to add
+            Console.WriteLine("How much do you want to add to your account?");
             double addBalance = Convert.ToDouble(Console.ReadLine());
-            
-            //Animation reloading
+            account1.AddingMoney(addBalance);
+
+            // Animation reloading
             Console.WriteLine("----------------------");
-            TextAnimation.AnimationTyping("Wait... \n");
+            TextAnimation.AnimationTyping("Wait...\n");
             Console.WriteLine("Money Added!");
 
             // shows the actual balance
-            double newBalance = account.AddMoney(addBalance);
-            Console.WriteLine($"Your current balance is: {newBalance}. \n");
+            Console.Write("Your current balance is: " + account1.getInfo());
+            Console.WriteLine("\n----------------------\n");
+
 
             // New menu with condicion
             Console.WriteLine("1. Back to Menu");
@@ -100,11 +157,14 @@ namespace BankingApplication.Models
             {
                 Console.Clear();
                 Customer.DisplayMenu("Menu");
-            } else if (answer == 2)
+            }
+            else if (answer == 2)
             {
                 Console.Clear();
+                account1.getInfo();
                 AddMoney();
-            } else
+            }
+            else
             {
                 Console.Clear();
                 LogOut();
@@ -114,13 +174,56 @@ namespace BankingApplication.Models
         //Subtract Money Method
         public static void SubtractMoney()
         {
-            Console.WriteLine("Subtract Money Method");
+            Console.WriteLine("This method should Subtract Money from a account \n");
+
+            // New menu with condicion
+            Console.WriteLine("1. Back to Menu");
+            Console.WriteLine("2. Subtract Money");
+            Console.WriteLine("3. Log out");
+            Console.Write("Answer: ");
+            int answer = Convert.ToInt32(Console.ReadLine());
+
+            while (answer != 1 && answer != 2 && answer != 3)
+            {
+                Console.WriteLine($"{answer} does not exist! Try again (1-3)");
+                Console.Write("Answer: ");
+                answer = Convert.ToInt32(Console.ReadLine());
+            }
+
+            if (answer == 1)
+            {
+                Console.Clear();
+                Customer.DisplayMenu("Menu");
+            }
+            else if (answer == 2)
+            {
+                Console.Clear();
+
+                //Animation reloading
+                Console.WriteLine("\nThis Subtract Money class is not working yet!\n");
+                Console.WriteLine("----------------------");
+                TextAnimation.AnimationTyping("Returning...");
+                Customer.DisplayMenu("Menu");
+
+                //SubtractMoney();
+            }
+            else
+            {
+                Console.Clear();
+                LogOut();
+            }
         }
 
-        //Log out of the system
+        //Log out of user
         public static void LogOut()
         {
-            Console.WriteLine("You have been logged out");
+            Console.WriteLine("\nThis Log Out class is not working yet!\n");
+            
+            //Animation reloading
+            Console.WriteLine("----------------------");
+            TextAnimation.AnimationTyping("Returning...");
+            Console.Clear();
+            Customer.DisplayMenu("Menu");
         }
     }
 }

@@ -11,11 +11,21 @@ namespace BankingApplication.Models
 {
     public class User
     {
+        public string firstName { get; set; }
+        public string lastName { get; set; }
+        public string email { get; set; }
+        public double balance { get; set; }
 
-        // Constructor
+        //Constructor
         public User()
         {
 
+        }
+
+        // This Method prints user full name
+        public static void PrintFullName()
+        {
+            //Console.WriteLine($"| Dear {firstName} {lastName}");
         }
 
         // This Method creates an empty customer.txt for the first time 
@@ -31,12 +41,13 @@ namespace BankingApplication.Models
         {
             string path = "customers.txt";
             string[] user = { customerFName, customerLName, customerEmail };
+            Console.WriteLine(user);
 
             WriteFile(path, user);
         }
 
         // This Method writes the user details
-        public static void WriteFile(string file, string[] userDetails)
+        public static void WriteFile(string file, params string[] userDetails)
         {
                           // Change it in your pc address
             string path = "C:/Users/pgmar/source/repos/BankingApplication/Files/";

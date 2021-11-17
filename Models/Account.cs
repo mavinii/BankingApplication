@@ -12,24 +12,31 @@ namespace BankingApplication.Models
         public string firstName { get; set; }
         public string lastName { get; set; }
         public string email { get; set; }
-        public double balance { get; set; }
+        public double money = 0.0;
 
-
-        public Account()
+        // constructor
+        public Account(double _balance)
         {
-
+            money = _balance;
         }
 
-        public double CheckingBalance()
+        // class for adding money to users account
+        public void AddingMoney(double amount)
         {
-            return balance = 0;
+            Console.WriteLine($"Adding ${amount}");
+            money += amount;   
         }
 
-        public double AddMoney(double newBalance)
+        // class for subtract money to users account
+        public void SubtractingMoney(double _money)
         {
-            double total = balance + newBalance;
-            return total;
+            money -= _money;
         }
 
+        // class for returning user info account
+        public double getInfo()
+        {
+            return money;
+        }
     }
 }

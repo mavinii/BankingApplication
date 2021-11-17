@@ -19,7 +19,7 @@ namespace BankingApplication.Models
         }
 
         // Function to know if it is Bank Employee or Customer
-        public void Login(string welcome)
+        public void Login(string name)
         {
 
             // Checking password
@@ -62,7 +62,7 @@ namespace BankingApplication.Models
                 
             } else if (answer == 2)
             {
-                Console.WriteLine("Hi Customer,");
+                Console.WriteLine("\nHi Customer,");
                 Console.Write("Firt Name: ");
                 firstName = Console.ReadLine();
                 Console.Write("Second Name: ");
@@ -79,8 +79,7 @@ namespace BankingApplication.Models
                 }
 
                 //It is calling the Customer class
-                Console.WriteLine($"Welcome, {firstName} {secondName},");
-                Customer.DisplayMenu("");                
+                Customer.DisplayMenu($"Welcome {firstName} {secondName},");                
             }
         }
     }

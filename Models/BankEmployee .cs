@@ -10,7 +10,7 @@ namespace BankingApplication.Models
 {
     public class BankEmployee
     {
- 
+
         //Constructor
         public BankEmployee()
         {
@@ -44,7 +44,7 @@ namespace BankingApplication.Models
 
             if (answer == 1)
             {
-                CreateCustomers();
+                CreateCustomers(); 
             } else if (answer == 2)
             {
                 DeleteCustomers();
@@ -78,7 +78,7 @@ namespace BankingApplication.Models
 
             // Animation reloading
             Console.WriteLine("----------------------");
-            TextAnimation.AnimationTyping("Wait... \n");
+            TextAnimation.AnimationTyping("Wait...\n");
             Console.WriteLine("User Created! \n");
 
             // New menu with condicion
@@ -115,27 +115,162 @@ namespace BankingApplication.Models
         // You can only delete customers who have zero balances.
         public static void DeleteCustomers()
         {
-            // Create an user file to save all information here.
-            Console.WriteLine("Customers 0 balances Method");
+            
+            Console.WriteLine("\nThis Delete Customers method is not working yet!\n");
+
+            // New menu with condicion
+            Console.WriteLine("1. Back to Menu");
+            Console.WriteLine("2. Delete Customers");
+            Console.WriteLine("3. Log out");
+            Console.Write("Answer: ");
+            int answer = Convert.ToInt32(Console.ReadLine());
+
+            while (answer != 1 && answer != 2 && answer != 3)
+            {
+                Console.WriteLine($"{answer} does not exist! Try again (1-3)");
+                Console.Write("Answer: ");
+                answer = Convert.ToInt32(Console.ReadLine());
+            }
+
+            if (answer == 1)
+            {
+                Console.Clear();
+                BankEmployee.DisplayMenu("Menu");
+            }
+            else if (answer == 2)
+            {
+                Console.Clear();
+
+                //Animation reloading
+                Console.WriteLine("\nThis Delete Customers class is not working yet!\n");
+                Console.WriteLine("----------------------");
+                TextAnimation.AnimationTyping("Returning...");
+                BankEmployee.DisplayMenu("Menu");
+
+                //DeleteCustomers();
+            }
+            else
+            {
+                Console.Clear();
+                LogOut();
+            }
         }
 
         // Create transactions(lodge, deposit) for each customer
         // You should be able to add and withdraw for a specified account
         public static void CreateTransactions()
         {
-            Console.WriteLine("This is the Create transactions Method");
+            Console.WriteLine("\nThis Create Transactions method is not working yet!\n");
+
+            // New menu with condicion
+            Console.WriteLine("1. Back to Menu");
+            Console.WriteLine("2. Create Transactions");
+            Console.WriteLine("3. Log out");
+            Console.Write("Answer: ");
+            int answer = Convert.ToInt32(Console.ReadLine());
+
+            while (answer != 1 && answer != 2 && answer != 3)
+            {
+                Console.WriteLine($"{answer} does not exist! Try again (1-3)");
+                Console.Write("Answer: ");
+                answer = Convert.ToInt32(Console.ReadLine());
+            }
+
+            if (answer == 1)
+            {
+                Console.Clear();
+                BankEmployee.DisplayMenu("Menu");
+            }
+            else if (answer == 2)
+            {
+                Console.Clear();
+
+                //Animation reloading
+                Console.WriteLine("\nThis Create Transactions class is not working yet!\n");
+                Console.WriteLine("----------------------");
+                TextAnimation.AnimationTyping("Returning...");
+                BankEmployee.DisplayMenu("Menu");
+
+                //CreateTransactions();
+            }
+            else
+            {
+                Console.Clear();
+                LogOut();
+            }
         }
 
         // List of customers including their balances in savings and current account
         public static void ListOfCustomers()
         {
-            Console.WriteLine("List of Customers");
+            Console.WriteLine("\nThis List of Customers method is not working yet!\n");
+
+            // New menu with condicion
+            Console.WriteLine("1. Back to Menu");
+            Console.WriteLine("2. List of Customers");
+            Console.WriteLine("3. Log out");
+            Console.Write("Answer: ");
+            int answer = Convert.ToInt32(Console.ReadLine());
+
+            while (answer != 1 && answer != 2 && answer != 3)
+            {
+                Console.WriteLine($"{answer} does not exist! Try again (1-3)");
+                Console.Write("Answer: ");
+                answer = Convert.ToInt32(Console.ReadLine());
+            }
+
+            if (answer == 1)
+            {
+                Console.Clear();
+                BankEmployee.DisplayMenu("Menu");
+            }
+            else if (answer == 2)
+            {
+                Console.Clear();
+
+                //Animation reloading
+                Console.WriteLine("\nThis List of Customer class is not working yet!\n");
+                Console.WriteLine("----------------------");
+                TextAnimation.AnimationTyping("Returning...");
+                BankEmployee.DisplayMenu("Menu");
+
+                //ListOfCustomers();
+            }
+            else
+            {
+                Console.Clear();
+                LogOut();
+            }
         }
         
         // Log out of the system
         public static void LogOut()
         {
-            Console.WriteLine("You have been logged out");
+            Console.WriteLine("\nThis Log Out method is not working yet!\n");
+
+            // New menu with condicion
+            Console.WriteLine("1. Back to Menu");
+            Console.WriteLine("2. Log out");
+            Console.Write("Answer: ");
+            int answer = Convert.ToInt32(Console.ReadLine());
+
+            while (answer != 1 && answer != 2)
+            {
+                Console.WriteLine($"{answer} does not exist! Try again (1-2)");
+                Console.Write("Answer: ");
+                answer = Convert.ToInt32(Console.ReadLine());
+            }
+
+            if (answer == 1)
+            {
+                Console.Clear();
+                BankEmployee.DisplayMenu("Menu");
+            }
+            else
+            {
+                Console.Clear();
+                LogOut();
+            }
         }
     }
 }
