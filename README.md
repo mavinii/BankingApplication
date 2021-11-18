@@ -1,23 +1,22 @@
 # Banking Application
-OOP - BSC20921 - Semester 1 - Dorset College.
-22931 - Marcos Oliveira.
+1. OOP - BSC20921 - Semester 1 - Dorset College.
+2. 22931 - Marcos Oliveira.
 
-# Logging In
-1.	An opening menu should ask if you are a Bank Employee or a Customer.
-2.	To successfully login as a bank employee you must type in the pin 'A1234'
-3.	To successfully login as a customer, you must enter your first name, last name, account number and pin. 
+# Completed
+1.	All the necessary class so far
+2.	A Drive class that push all the code
+3.	A menu for both, Bank Employee and Customer with Pin and Password 
+4.	? 
 
-# Bank Employee View
+# Doing
 1.	As a bank employee you can create and delete customers. 
-2.	Each new customer gets a savings account and a current account. 
-3.	You can only delete customers who have zero balances. 
-4.	You can create transactions (lodge, deposit) for each customer. You should be able to add and withdraw for a specified account.
-5.	To create a customer account you need first name, last name and email.
-6.	You should be able to show a complete list of customers including their balances in savings and current account.
-7.	There should be a menu item allowing you to list customers, their account numbers. 
 
-# Customer View
+
+# To do list
 1.	To login, a customer must enter their name, account code AND a pin number for their account
-2.	A customer can retrieve the transaction history for their specified account.
-3.	They can add and subtract money to either their savings account or current account. 
-4.	They cannot have negative balances
+
+# Could not do
+1. 
+
+# Challenge
+1.
