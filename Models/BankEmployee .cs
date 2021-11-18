@@ -19,26 +19,24 @@ namespace BankingApplication.Models
 
         public static void DisplayMenu(string welcome)
         {
-            Console.Clear();
             Console.WriteLine("-----------------------------");
-            Console.WriteLine("| Dear Employee,             |");
-            Console.WriteLine("|                            |");
             Console.WriteLine("| 1. Create Customer         |");
             Console.WriteLine("| 2. Delete Customer         |");
             Console.WriteLine("| 3. Create Transactions     |");
             Console.WriteLine("| 4. List of Customer        |");
             Console.WriteLine("| 5. Log out                 |");
-            Console.WriteLine("|                            |");
             Console.WriteLine("-----------------------------");
             Console.Write("Answer: ");
-            int answer = Convert.ToInt32(Console.ReadLine());
+            int answer;
+            int.TryParse(Console.ReadLine(), out answer);
+
 
             // Cant have the wrong answer
             while (answer !=1 && answer != 2 && answer != 3 && answer != 4 && answer != 5)
             {
                 Console.WriteLine($"{answer} does not exist! Try again (1-5)");
                 Console.Write("Answer: ");
-                answer = Convert.ToInt32(Console.ReadLine());
+                int.TryParse(Console.ReadLine(), out answer);
 
             }
 
@@ -63,18 +61,35 @@ namespace BankingApplication.Models
         // This Method creates a new user
         public static void CreateCustomers()
         {
+            // user . generating ... goes here
+
+
             //Asking customer details
             Console.Write("Enter your First Name: ");
-            string customerFName = Console.ReadLine();
+            string firstName = Console.ReadLine();
             Console.Write("Enter your Last Name: ");
-            string customerLName = Console.ReadLine();
+            string lastName = Console.ReadLine();
             Console.Write("Email address: ");
-            string customerEmail = Console.ReadLine();
+            string email = Console.ReadLine();
 
-            //User.ReadFile(customerFName, customerLName, customerEmail);
+            //User.ReadFile(customerFName, customerLName, customerEmail);  List<string> userDetails = array.ToList();
             string newUser = "customers.txt";
-            string[] userDetails = { "Name: " + customerFName + ", Last Name: " + customerLName + ", Email: " + customerEmail };
+            string[] userDetails = { "Name: " + firstName + ", Last Name: " + lastName + ", Email: " + email };
             User.WriteFile(newUser, userDetails);
+
+            // Getting All info for saving in a -saving.txt
+            string customerSaving = "-saving.txt";
+            string[] userSavingsDetails = { "Name: " + firstName + ", Last Name: " + lastName + ", Email: " + email };
+            User.WriteSavingsList(customerSaving, userSavingsDetails);
+
+            // Getting All info for saving in a -current.txt
+            string customerCurrent = "-current.txt";
+            string[] userCurrentDetails = { "Name: " + firstName + ", Last Name: " + lastName + ", Email: " + email };
+            User.WriteCurrentList(customerCurrent, userCurrentDetails);
+
+            //string letterFirstName = firstName.Substring(0, 1);
+            //string letterLastName = lastName.Substring(0, 1);
+            //int lenghtFullName = firstName.Length + lastName.Length;
 
             // Animation reloading
             Console.WriteLine("----------------------");
@@ -246,6 +261,8 @@ namespace BankingApplication.Models
         // Log out of the system
         public static void LogOut()
         {
+            //Environment.Exit(0); ???
+
             Console.WriteLine("\nThis Log Out method is not working yet!\n");
 
             // New menu with condicion

@@ -7,31 +7,24 @@ using System.Threading.Tasks;
 //22931 - Marcos Oliveira
 namespace BankingApplication.Models
 {
+    // This class is in charge of main application
     public class Driver
     {
-        // This class is in charge of main application
 
-        //Constructor
+        private String password = "A1234";
+        private int pin = 12345;
+
+        // Method Bank Employee or Customer
         public Driver()
         {
-            Console.WriteLine("**** Banking Application ****");
-            Console.WriteLine("");
-        }
+            Console.WriteLine("**** Banking Application ****\n");
 
-        // Function to know if it is Bank Employee or Customer
-        public void Login(string name)
-        {
-
-            // Checking password
-            String password = "A1234";
-            int pin = 12345;
-            string firstName;
-            string secondName;
-            
             Console.WriteLine("1. Bank Employee");
             Console.WriteLine("2. Customer");
             Console.Write("Answer: ");
-            int answer = Convert.ToInt32(Console.ReadLine());
+            int answer;
+            int.TryParse(Console.ReadLine(), out answer);
+
 
             // Cant have the wrong answer
             while (answer != 1 && answer != 2)
@@ -40,47 +33,68 @@ namespace BankingApplication.Models
                 Console.WriteLine("1. Bank Employee");
                 Console.WriteLine("2. Customer");
                 Console.Write("Answer: ");
-                answer = Convert.ToInt32(Console.ReadLine());
+                int.TryParse(Console.ReadLine(), out answer);
             }
 
-            if (answer == 1) 
+            if (answer == 1)
             {
-                Console.Write("Hi Employee, please type your password: ");
-                string aEmployee = Console.ReadLine();
+                LoginEmployee("");
+            } else if (answer == 2)
+            {
+                LoginCustomer("");
+            } else
+            {
+                Console.WriteLine("Something went wrong, try again!");
+            }
+        }
+
+        // Login Employee
+        public void LoginEmployee(string name)
+        {             
+                Console.WriteLine("------------");
+                Console.Write("Name: ");
+                string employeeName = Console.ReadLine();
+                Console.Write("Password: ");
+                string employeePassword = Console.ReadLine();
 
                 // Cant have the wrong answer
-                while (aEmployee != password) 
+                while (employeePassword != password) 
                 {
                     Console.WriteLine("Please, try again! \n");
                     Console.Write("Password: ");
-                    aEmployee = Console.ReadLine();
+                    employeePassword = Console.ReadLine();
                 }
 
                 //It is calling the Customer class
-                Console.WriteLine("Welcome, Employee!");
+                Console.Clear();
+                Console.WriteLine($"Welcome {employeeName},");
                 BankEmployee.DisplayMenu("");
-                
-            } else if (answer == 2)
+        }
+
+        // Login Customer
+        public void LoginCustomer(string name)
+        {
+            Console.WriteLine("------------");
+            Console.Write("First Name: ");
+            string firstName = Console.ReadLine();
+            Console.Write("Second Name: ");
+            string secondName = Console.ReadLine();
+            Console.Write("Please, type your PIN: ");
+            int customerPin;
+            int.TryParse(Console.ReadLine(), out customerPin);
+
+            // Cant have the wrong answer
+            while (customerPin != pin)
             {
-                Console.WriteLine("\nHi Customer,");
-                Console.Write("Firt Name: ");
-                firstName = Console.ReadLine();
-                Console.Write("Second Name: ");
-                secondName = Console.ReadLine();
-                Console.Write("Please, type your PIN: ");
-                int customerPin = Convert.ToInt32(Console.ReadLine());
-
-                // Cant have the wrong answer
-                while (customerPin != pin)
-                {
-                    Console.WriteLine("Please, try again!");
-                    Console.Write("Password: ");
-                    customerPin = Convert.ToInt32(Console.ReadLine());
-                }
-
-                //It is calling the Customer class
-                Customer.DisplayMenu($"Welcome {firstName} {secondName},");                
+                Console.WriteLine("Please, try again!");
+                Console.Write("Password: ");
+                customerPin = Convert.ToInt32(Console.ReadLine());
             }
+
+            //It is calling the Customer class
+            Console.Clear();
+            Console.WriteLine($"Welcome {firstName} {secondName},");
+            Customer.DisplayMenu("");
         }
     }
 }

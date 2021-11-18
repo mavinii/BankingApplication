@@ -9,9 +9,7 @@ namespace BankingApplication.Models
 {
     public class Account
     {
-        public string firstName { get; set; }
-        public string lastName { get; set; }
-        public string email { get; set; }
+
         public double money = 0.0;
 
         // constructor
@@ -30,6 +28,7 @@ namespace BankingApplication.Models
         // class for subtract money to users account
         public void SubtractingMoney(double _money)
         {
+            Console.WriteLine($"Subtracting ${_money}");
             money -= _money;
         }
 

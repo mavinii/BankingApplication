@@ -17,7 +17,6 @@ namespace BankingApplication.Models
         public int enterNumber;
         public string email;
         public static Account account1 = new Account(0);
-   
 
         public Customer(string firstName, string lastName, string email)
         {
@@ -26,28 +25,24 @@ namespace BankingApplication.Models
             this.email = email;
         }
 
-
         //constructor
         public Customer()
         {
 
         }
 
-
         public static void DisplayMenu(string welcome)
         {
-            Console.Clear();
+  
             Console.WriteLine("-----------------------------");
-            Console.WriteLine("| Dear Customer,             |");
-            Console.WriteLine("|                            |");
             Console.WriteLine("| 1. Retrieve Transaction    |");
             Console.WriteLine("| 2. Add Money               |");
             Console.WriteLine("| 3. Withdrawal              |");
             Console.WriteLine("| 4. Log out                 |");
-            Console.WriteLine("|                            |");
             Console.WriteLine("-----------------------------");
             Console.Write("Answer: ");
-            int answer = Convert.ToInt32(Console.ReadLine());
+            int answer;
+            int.TryParse(Console.ReadLine(), out answer);
 
             // Cant have the wrong answer
             while (answer != 1 && answer != 2 && answer != 3 && answer != 4)
@@ -119,13 +114,9 @@ namespace BankingApplication.Models
         public static void AddMoney()
         {
 
-            //what is happening? I can add money but it is returning the actual value
-            // and not adding they together
-
-
-            
             // Asking how much money to add
             Console.WriteLine("How much do you want to add to your account?");
+            Console.Write("$");
             double addBalance = Convert.ToDouble(Console.ReadLine());
             account1.AddingMoney(addBalance);
 
@@ -138,13 +129,14 @@ namespace BankingApplication.Models
             Console.Write("Your current balance is: " + account1.getInfo());
             Console.WriteLine("\n----------------------\n");
 
-
             // New menu with condicion
             Console.WriteLine("1. Back to Menu");
             Console.WriteLine("2. Add Money");
             Console.WriteLine("3. Log out");
             Console.Write("Answer: ");
-            int answer = Convert.ToInt32(Console.ReadLine());
+            int answer;
+            int.TryParse(Console.ReadLine(), out answer);
+
 
             while (answer != 1 && answer != 2 && answer != 3)
             {
@@ -174,14 +166,28 @@ namespace BankingApplication.Models
         //Subtract Money Method
         public static void SubtractMoney()
         {
-            Console.WriteLine("This method should Subtract Money from a account \n");
+            // Asking how much money to Subtract
+            Console.WriteLine("How much do you want to withdraw from your account?");
+            Console.Write("$");
+            double addBalance = Convert.ToDouble(Console.ReadLine());
+            account1.SubtractingMoney(addBalance);
+
+            // Animation reloading
+            Console.WriteLine("----------------------");
+            TextAnimation.AnimationTyping("Wait...\n");
+            Console.WriteLine("Money Added!");
+
+            // shows the actual balance
+            Console.Write("Your current balance is: " + account1.getInfo());
+            Console.WriteLine("\n----------------------\n");
 
             // New menu with condicion
             Console.WriteLine("1. Back to Menu");
             Console.WriteLine("2. Subtract Money");
             Console.WriteLine("3. Log out");
             Console.Write("Answer: ");
-            int answer = Convert.ToInt32(Console.ReadLine());
+            int answer;
+            int.TryParse(Console.ReadLine(), out answer);
 
             while (answer != 1 && answer != 2 && answer != 3)
             {
@@ -218,7 +224,9 @@ namespace BankingApplication.Models
         public static void LogOut()
         {
             Console.WriteLine("\nThis Log Out class is not working yet!\n");
-            
+
+            //Environment.Exit(0); ??
+
             //Animation reloading
             Console.WriteLine("----------------------");
             TextAnimation.AnimationTyping("Returning...");

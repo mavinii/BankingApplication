@@ -8,9 +8,7 @@ namespace BankingApplication
     {
         static void Main(string[] args)
         {
-            Driver driver = new Driver();
-            driver.Login("welcome");
+            Driver driver = new();
         }
-
     }
 }
