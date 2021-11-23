@@ -4,27 +4,59 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static BankingApplication.Models.Driver;
 
 //22931 - Marcos Oliveira
 namespace BankingApplication.Models
 {
     public class BankEmployee
     {
+        public static string employeeName { get; set; }
 
         //Constructor
-        public BankEmployee()
+        public BankEmployee(string _employeeName)
         {
-
+            employeeName = _employeeName;
         }
 
-        public static void DisplayMenu(string welcome)
+        // Login Employee
+        public static void LoginEmployee()
         {
+            string password = "A1234";
+
+            Console.WriteLine("-----------------------------");
+            Console.Write("Name: ");
+            employeeName = Console.ReadLine();
+            Console.Write("Password: ");
+            string employeePassword = Console.ReadLine();
+                        
+            // Cant have the wrong answer
+            while (employeePassword != password)
+            {
+                Console.WriteLine("Please, try again! \n");
+                Console.Write("Password: ");
+                employeePassword = Console.ReadLine();
+            }
+
+            // Simple animation
+            Console.WriteLine("-----------------------------");
+            Console.WriteLine("Authenticating user");
+            TextAnimation.AnimationTyping($"Wait...\n");
+
+            //It is calling the Customer class
+            Console.Clear();
+            DisplayMenu();
+        }
+
+        public static void DisplayMenu()
+        {
+            Console.WriteLine($"Welcome {employeeName},");
             Console.WriteLine("-----------------------------");
             Console.WriteLine("| 1. Create Customer         |");
             Console.WriteLine("| 2. Delete Customer         |");
             Console.WriteLine("| 3. Create Transactions     |");
             Console.WriteLine("| 4. List of Customer        |");
-            Console.WriteLine("| 5. Log out                 |");
+            Console.WriteLine("| 5. Exit                    |");
             Console.WriteLine("-----------------------------");
             Console.Write("Answer: ");
             int answer;
@@ -37,7 +69,6 @@ namespace BankingApplication.Models
                 Console.WriteLine($"{answer} does not exist! Try again (1-5)");
                 Console.Write("Answer: ");
                 int.TryParse(Console.ReadLine(), out answer);
-
             }
 
             if (answer == 1)
@@ -61,10 +92,7 @@ namespace BankingApplication.Models
         // This Method creates a new user
         public static void CreateCustomers()
         {
-            // user . generating ... goes here
-
-
-            //Asking customer details
+            // Asking user details
             Console.Write("Enter your First Name: ");
             string firstName = Console.ReadLine();
             Console.Write("Enter your Last Name: ");
@@ -72,38 +100,36 @@ namespace BankingApplication.Models
             Console.Write("Email address: ");
             string email = Console.ReadLine();
 
-            //User.ReadFile(customerFName, customerLName, customerEmail);  List<string> userDetails = array.ToList();
-            string newUser = "customers.txt";
-            string[] userDetails = { "Name: " + firstName + ", Last Name: " + lastName + ", Email: " + email };
-            User.WriteFile(newUser, userDetails);
+            // Getting the first word of first name and last name and size 
+            string lFirstName = firstName.Substring(0, 1);
+            string lLastName = lastName.Substring(0, 1);
+            int lenghtFullName = firstName.Length + lastName.Length;
+            int firstPosition = User.GeneratingCustomerFileName(lFirstName);
+            int secondPosition = User.GeneratingCustomerFileName(lLastName);
 
-            // Getting All info for saving in a -saving.txt
-            string customerSaving = "-saving.txt";
-            string[] userSavingsDetails = { "Name: " + firstName + ", Last Name: " + lastName + ", Email: " + email };
-            User.WriteSavingsList(customerSaving, userSavingsDetails);
+            string customerDetails2 = $"{lFirstName.ToUpper()}{lLastName.ToUpper()}-{lenghtFullName}-{firstPosition}-{secondPosition}";
 
-            // Getting All info for saving in a -current.txt
-            string customerCurrent = "-current.txt";
-            string[] userCurrentDetails = { "Name: " + firstName + ", Last Name: " + lastName + ", Email: " + email };
-            User.WriteCurrentList(customerCurrent, userCurrentDetails);
-
-            //string letterFirstName = firstName.Substring(0, 1);
-            //string letterLastName = lastName.Substring(0, 1);
-            //int lenghtFullName = firstName.Length + lastName.Length;
+            User.WriteSavingsFile(customerDetails2);
+            User.WriteCurrentFile(customerDetails2);
+            User.WriteCustomerFile(customerDetails2, firstName, lastName, email);
 
             // Animation reloading
-            Console.WriteLine("----------------------");
+            Console.WriteLine("-----------------------------");
             TextAnimation.AnimationTyping("Wait...\n");
             Console.WriteLine("User Created! \n");
+            Console.WriteLine($"Accound Number: {customerDetails2}");
+            Console.WriteLine($"Account PIN Number: {firstPosition}{secondPosition}"); //save it and just allow the user to log in with pin
+            Console.WriteLine("-----------------------------");
 
             // New menu with condicion
-            Console.WriteLine("1. Back to Menu");
+            Console.WriteLine("\n1. Back to Menu");
             Console.WriteLine("2. Create a new user");
-            Console.WriteLine("3. Log out");
+            Console.WriteLine("3. Show a customer list");
+            Console.WriteLine("4. Exit");
             Console.Write("Answer: ");
             int answer = Convert.ToInt32(Console.ReadLine());
 
-            while (answer != 1 && answer != 2 && answer != 3)
+            while (answer != 1 && answer != 2 && answer != 3 && answer != 4)
             {
                 Console.WriteLine($"{answer} does not exist! Try again (1-3)");
                 Console.Write("Answer: ");
@@ -113,12 +139,17 @@ namespace BankingApplication.Models
             if (answer == 1)
             {
                 Console.Clear();
-                BankEmployee.DisplayMenu("Menu");
+               DisplayMenu();
             }
             else if (answer == 2)
             {
                 Console.Clear();
                 CreateCustomers();
+            }
+            else if (answer == 3)
+            {
+                Console.Clear();
+                User.ReadCustomerFile();
             }
             else
             {
@@ -135,8 +166,8 @@ namespace BankingApplication.Models
 
             // New menu with condicion
             Console.WriteLine("1. Back to Menu");
-            Console.WriteLine("2. Delete Customers");
-            Console.WriteLine("3. Log out");
+            Console.WriteLine("2. Delete Other Customer");
+            Console.WriteLine("3. Exit");
             Console.Write("Answer: ");
             int answer = Convert.ToInt32(Console.ReadLine());
 
@@ -150,19 +181,15 @@ namespace BankingApplication.Models
             if (answer == 1)
             {
                 Console.Clear();
-                BankEmployee.DisplayMenu("Menu");
+                DisplayMenu();
             }
             else if (answer == 2)
             {
-                Console.Clear();
-
                 //Animation reloading
-                Console.WriteLine("\nThis Delete Customers class is not working yet!\n");
-                Console.WriteLine("----------------------");
+                Console.WriteLine("\nThis Delete Customers Method is not working yet!");
                 TextAnimation.AnimationTyping("Returning...");
-                BankEmployee.DisplayMenu("Menu");
-
-                //DeleteCustomers();
+                Console.Clear();
+                DisplayMenu();
             }
             else
             {
@@ -175,12 +202,12 @@ namespace BankingApplication.Models
         // You should be able to add and withdraw for a specified account
         public static void CreateTransactions()
         {
-            Console.WriteLine("\nThis Create Transactions method is not working yet!\n");
+            Console.WriteLine("\nThis Create Transactions Method is not working yet!\n");
 
             // New menu with condicion
             Console.WriteLine("1. Back to Menu");
-            Console.WriteLine("2. Create Transactions");
-            Console.WriteLine("3. Log out");
+            Console.WriteLine("2. Create Other Transaction");
+            Console.WriteLine("3. Exit");
             Console.Write("Answer: ");
             int answer = Convert.ToInt32(Console.ReadLine());
 
@@ -194,19 +221,15 @@ namespace BankingApplication.Models
             if (answer == 1)
             {
                 Console.Clear();
-                BankEmployee.DisplayMenu("Menu");
+                DisplayMenu();
             }
             else if (answer == 2)
             {
-                Console.Clear();
-
                 //Animation reloading
-                Console.WriteLine("\nThis Create Transactions class is not working yet!\n");
-                Console.WriteLine("----------------------");
+                Console.WriteLine("\nThis Create Transactions Method is not working yet!");
                 TextAnimation.AnimationTyping("Returning...");
-                BankEmployee.DisplayMenu("Menu");
-
-                //CreateTransactions();
+                Console.Clear();
+                DisplayMenu();
             }
             else
             {
@@ -218,12 +241,12 @@ namespace BankingApplication.Models
         // List of customers including their balances in savings and current account
         public static void ListOfCustomers()
         {
-            Console.WriteLine("\nThis List of Customers method is not working yet!\n");
+            User.ReadCustomerFile();
 
             // New menu with condicion
-            Console.WriteLine("1. Back to Menu");
+            Console.WriteLine("\n1. Back to Menu");
             Console.WriteLine("2. List of Customers");
-            Console.WriteLine("3. Log out");
+            Console.WriteLine("3. Exit");
             Console.Write("Answer: ");
             int answer = Convert.ToInt32(Console.ReadLine());
 
@@ -237,19 +260,12 @@ namespace BankingApplication.Models
             if (answer == 1)
             {
                 Console.Clear();
-                BankEmployee.DisplayMenu("Menu");
+                DisplayMenu();
             }
             else if (answer == 2)
             {
                 Console.Clear();
-
-                //Animation reloading
-                Console.WriteLine("\nThis List of Customer class is not working yet!\n");
-                Console.WriteLine("----------------------");
-                TextAnimation.AnimationTyping("Returning...");
-                BankEmployee.DisplayMenu("Menu");
-
-                //ListOfCustomers();
+                ListOfCustomers();
             }
             else
             {
@@ -261,33 +277,9 @@ namespace BankingApplication.Models
         // Log out of the system
         public static void LogOut()
         {
-            //Environment.Exit(0); ???
-
-            Console.WriteLine("\nThis Log Out method is not working yet!\n");
-
-            // New menu with condicion
-            Console.WriteLine("1. Back to Menu");
-            Console.WriteLine("2. Log out");
-            Console.Write("Answer: ");
-            int answer = Convert.ToInt32(Console.ReadLine());
-
-            while (answer != 1 && answer != 2)
-            {
-                Console.WriteLine($"{answer} does not exist! Try again (1-2)");
-                Console.Write("Answer: ");
-                answer = Convert.ToInt32(Console.ReadLine());
-            }
-
-            if (answer == 1)
-            {
-                Console.Clear();
-                BankEmployee.DisplayMenu("Menu");
-            }
-            else
-            {
-                Console.Clear();
-                LogOut();
-            }
+            // Animation reloading
+            Console.WriteLine("-----------------------------");
+            TextAnimation.AnimationTyping("Bye...\n");
         }
     }
 }

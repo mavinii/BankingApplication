@@ -9,6 +9,7 @@ namespace BankingApplication
         static void Main(string[] args)
         {
             Driver driver = new();
+            driver.Menu();
         }
     }
 }

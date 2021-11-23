@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static BankingApplication.Models.BankEmployee;
+using static BankingApplication.Models.Customer;
 
 //22931 - Marcos Oliveira
 namespace BankingApplication.Models
@@ -11,11 +13,13 @@ namespace BankingApplication.Models
     public class Driver
     {
 
-        private String password = "A1234";
-        private int pin = 12345;
+        public Driver()
+        {
+
+        }
 
         // Method Bank Employee or Customer
-        public Driver()
+        public void Menu()
         {
             Console.WriteLine("**** Banking Application ****\n");
 
@@ -24,7 +28,6 @@ namespace BankingApplication.Models
             Console.Write("Answer: ");
             int answer;
             int.TryParse(Console.ReadLine(), out answer);
-
 
             // Cant have the wrong answer
             while (answer != 1 && answer != 2)
@@ -38,63 +41,17 @@ namespace BankingApplication.Models
 
             if (answer == 1)
             {
-                LoginEmployee("");
+                BankEmployee.LoginEmployee();
             } else if (answer == 2)
             {
-                LoginCustomer("");
+                Customer.LoginCustomer();
             } else
             {
                 Console.WriteLine("Something went wrong, try again!");
-            }
-        }
-
-        // Login Employee
-        public void LoginEmployee(string name)
-        {             
-                Console.WriteLine("------------");
-                Console.Write("Name: ");
-                string employeeName = Console.ReadLine();
-                Console.Write("Password: ");
-                string employeePassword = Console.ReadLine();
-
-                // Cant have the wrong answer
-                while (employeePassword != password) 
-                {
-                    Console.WriteLine("Please, try again! \n");
-                    Console.Write("Password: ");
-                    employeePassword = Console.ReadLine();
-                }
-
-                //It is calling the Customer class
+                TextAnimation.AnimationTyping($"Wait...\n");
                 Console.Clear();
-                Console.WriteLine($"Welcome {employeeName},");
-                BankEmployee.DisplayMenu("");
-        }
-
-        // Login Customer
-        public void LoginCustomer(string name)
-        {
-            Console.WriteLine("------------");
-            Console.Write("First Name: ");
-            string firstName = Console.ReadLine();
-            Console.Write("Second Name: ");
-            string secondName = Console.ReadLine();
-            Console.Write("Please, type your PIN: ");
-            int customerPin;
-            int.TryParse(Console.ReadLine(), out customerPin);
-
-            // Cant have the wrong answer
-            while (customerPin != pin)
-            {
-                Console.WriteLine("Please, try again!");
-                Console.Write("Password: ");
-                customerPin = Convert.ToInt32(Console.ReadLine());
+                Menu();
             }
-
-            //It is calling the Customer class
-            Console.Clear();
-            Console.WriteLine($"Welcome {firstName} {secondName},");
-            Customer.DisplayMenu("");
         }
     }
 }

@@ -6,7 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Files\" />
+    <Folder Include="BankFiles\Current\" />
+    <Folder Include="BankFiles\Customer\" />
+    <Folder Include="BankFiles\Saving\" />
   </ItemGroup>
 
 </Project>
